@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+	.nav-link {
+		position: relative;
+		text-decoration: none;
+		color: #262626;
+		font-size: 16px;
+		line-height: 20px;
+		font-weight: 400;
+		font-style: normal;
+		font-family: Arial, sans-serif;
+		text-transform: none;
+	}
+
+	.nav-link::after {
+		content: '';
+		position: absolute;
+		bottom: -2px;
+		left: 50%;
+		width: 0;
+		height: 2px;
+		background-color: #801A0B;
+		transform: translateX(-50%);
+		transition: width 0.45s ease;
+	}
+
+	.nav-link:hover::after {
+		width: 70%;
+	}

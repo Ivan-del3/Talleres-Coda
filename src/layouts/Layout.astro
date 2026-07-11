@@ -1,28 +1,52 @@
 ---
 import '../styles/global.css';
-
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es" class="h-full">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Talleres-Coda-Valencia</title>
 	</head>
-	<body>
-		<slot />
+	<body class="flex flex-col h-full">
+
+		<header class="flex items-center justify-between px-32 py-2 bg-[#FEFEFE] border-b-2 border-[#66bbfe] shadow-sm">
+			<a href="/" class="shrink-0">
+				<img src="/logo-coda2.png" alt="Talleres Coda" class="h-32 w-auto" />
+			</a>
+
+			<nav>
+				<ul class="flex gap-12 list-none">
+					<li><a href="/conocenos" class="nav-link">Conócenos</a></li>
+					<li><a href="/servicios" class="nav-link">Nuestros servicios</a></li>
+					<li><a href="/encuentranos" class="nav-link">Encuéntranos</a></li>
+					<li><a href="/contacto" class="nav-link">Contacto</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main class="flex-1">
+			<slot />
+		</main>
+
+		<footer class="flex flex-col items-center gap-4 px-32 py-8 bg-[#395B7A] border-t-4 border-[#801A0B]">
+			<img src="/logo-coda2.png" alt="Talleres Coda" class="h-12 w-auto" />
+
+			<nav>
+				<ul class="flex gap-6 list-none m-0 p-0">
+					<li><a href="/conocenos" class="text-sm font-normal no-underline text-[#FEFEFE] opacity-80 hover:opacity-100 hover:text-[#66bbfe] transition-all duration-300 ease-in-out">Conócenos</a></li>
+					<li><a href="/servicios" class="text-sm font-normal no-underline text-[#FEFEFE] opacity-80 hover:opacity-100 hover:text-[#66bbfe] transition-all duration-300 ease-in-out">Nuestros servicios</a></li>
+					<li><a href="/encuentranos" class="text-sm font-normal no-underline text-[#FEFEFE] opacity-80 hover:opacity-100 hover:text-[#66bbfe] transition-all duration-300 ease-in-out">Encuéntranos</a></li>
+					<li><a href="/contacto" class="text-sm font-normal no-underline text-[#FEFEFE] opacity-80 hover:opacity-100 hover:text-[#66bbfe] transition-all duration-300 ease-in-out">Contacto</a></li>
+				</ul>
+			</nav>
+
+			<p class="text-sm text-[#FEFEFE]/60 m-0">© 2026 Talleres Coda. Todos los derechos reservados.</p>
+		</footer>
 	</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
