@@ -12,21 +12,29 @@ import '../styles/global.css';
 		<meta name="generator" content={Astro.generator} />
 		<title>Talleres-Coda-Valencia</title>
 	</head>
-	<body class="flex flex-col h-full">
+	<body class="flex flex-col h-full font-sans">
 
-		<header class="flex items-center justify-between px-32 py-2 bg-[#FEFEFE] border-b-2 border-[#66bbfe] shadow-sm">
+		<header class="site-header">
 			<a href="/" class="shrink-0">
-				<img src="/logo-coda2.png" alt="Talleres Coda" class="h-32 w-auto" />
+				<img src="/logo-coda2.png" alt="Talleres Coda" class="h-28 w-auto object-contain" />
 			</a>
 
 			<nav>
-				<ul class="flex gap-12 list-none">
-					<li><a href="/conocenos" class="nav-link">Conócenos</a></li>
-					<li><a href="/servicios" class="nav-link">Nuestros servicios</a></li>
-					<li><a href="/encuentranos" class="nav-link">Encuéntranos</a></li>
-					<li><a href="/contacto" class="nav-link">Contacto</a></li>
+				<ul class="flex items-center gap-12 list-none">
+					<li><a href="/conocenos" class="header-nav-link">Conócenos</a></li>
+					<li><a href="/servicios" class="header-nav-link">Nuestros Servicios</a></li>
+					<li><a href="/encuentranos" class="header-nav-link">Encuéntranos</a></li>
+					<li><a href="/contacto" class="header-nav-link">Contacto</a></li>
 				</ul>
 			</nav>
+
+			<div class="flex items-center gap-8">
+				<a href="tel:963474751" class="flex items-center gap-2 no-underline text-[#22233A]  hover:scale-[1.04] transition-transform duration-200 ">
+					<img src="/icons/phone.svg" alt="" class="h-5 w-5" />
+					<span class="font-semibold whitespace-nowrap">963 47 47 51</span>
+				</a>
+				<a href="/contacto" class="btn-primary">Reservar Cita</a>
+			</div>
 		</header>
 
 		<main class="flex-1">
@@ -38,10 +46,10 @@ import '../styles/global.css';
 
 			<nav>
 				<ul class="flex gap-6 list-none m-0 p-0">
-					<li><a href="/conocenos" class="text-sm font-normal no-underline text-[#FEFEFE] opacity-80 hover:opacity-100 hover:text-[#66bbfe] transition-all duration-300 ease-in-out">Conócenos</a></li>
-					<li><a href="/servicios" class="text-sm font-normal no-underline text-[#FEFEFE] opacity-80 hover:opacity-100 hover:text-[#66bbfe] transition-all duration-300 ease-in-out">Nuestros servicios</a></li>
-					<li><a href="/encuentranos" class="text-sm font-normal no-underline text-[#FEFEFE] opacity-80 hover:opacity-100 hover:text-[#66bbfe] transition-all duration-300 ease-in-out">Encuéntranos</a></li>
-					<li><a href="/contacto" class="text-sm font-normal no-underline text-[#FEFEFE] opacity-80 hover:opacity-100 hover:text-[#66bbfe] transition-all duration-300 ease-in-out">Contacto</a></li>
+					<li><a href="/conocenos" class="footer-nav-link">Conócenos</a></li>
+					<li><a href="/servicios" class="footer-nav-link">Nuestros servicios</a></li>
+					<li><a href="/encuentranos" class="footer-nav-link">Encuéntranos</a></li>
+					<li><a href="/contacto" class="footer-nav-link">Contacto</a></li>
 				</ul>
 			</nav>
 
