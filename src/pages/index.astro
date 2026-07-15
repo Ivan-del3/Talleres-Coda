@@ -1,25 +1,55 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import FindUs from '../components/FindUs.astro';
 ---
 
 <Layout>
 
-	<section class="flex flex-col md:flex-row items-center gap-16 px-32 py-20 bg-gradient-to-br from-[#FEFEFE] to-[#66bbfe]/10">
-		<div class="w-full md:w-1/2">
-			<img src="/fachada-intro.png" alt="Fachada de Talleres Coda" class="w-full rounded-lg object-cover shadow-lg ring-1 ring-[#395B7A]/10" />
+	<section id="inicio" class="grid items-stretch bg-[#22233A] lg:grid-cols-[42fr_58fr]">
+		<div class="flex flex-col justify-center gap-6 px-6 py-18 md:px-14 lg:px-20">
+			<h1 class="hero-title">
+				Talleres C.O.D.A<br />
+				<span class="text-[#66bbfe]">Valencia</span>
+			</h1>
+
+			<p class="max-w-120 text-lg leading-relaxed text-[#FEFEFE]/82">
+				Más de dos décadas reparando y manteniendo vehículos en Valencia. Diagnóstico preciso, mecánicos certificados y trato honesto en cada visita.
+			</p>
+			<div class="hero-badge">
+				<span class="h-2 w-2 rounded-full bg-[#66bbfe]"></span>
+				<span class="hero-badge-text">
+					Valencia · Marqués de San Juan, 8
+				</span>
+			</div>
+
+			<div class="flex flex-wrap gap-6">
+				<a href="/#contacto" class="btn-primary text-sm shadow-[0_8px_24px_rgba(128,26,11,0.35)]">
+					Pedir Cita Previa
+				</a>
+				<a href="/#servicios" class="btn-outline">
+					Ver Servicios
+				</a>
+			</div>
 		</div>
 
-		<div class="flex flex-col gap-4 md:w-1/2">
-			<span class="text-sm font-semibold tracking-widest uppercase text-[#801A0B]">Nuestra historia</span>
-			<h2 class="text-4xl font-bold text-[#395B7A]">Conócenos</h2>
-			<span class="w-16 h-1 rounded-full bg-[#4d79be]"></span>
-			<p class="text-base leading-relaxed text-gray-700">
-				En Talleres Coda somos un equipo de profesionales dedicados al cuidado de tu vehículo. Con años de experiencia en el sector, ofrecemos un servicio cercano, honesto y de calidad, cuidando cada detalle para que confíes en nosotros como en el primer día.
-			</p>
-			<a href="/conocenos" class="mt-2 inline-block w-fit rounded-md bg-[#801A0B] px-6 py-3 text-sm font-semibold text-[#FEFEFE] no-underline transition-colors duration-300 ease-in-out hover:bg-[#395B7A]">
-				Descubre más
-			</a>
+		<div class="relative hidden overflow-hidden lg:block">
+			<img src="/fachada-intro.png" alt="Fachada de Talleres C.O.D.A." class="h-full w-full object-cover object-center" />
+			<div class="hero-image-overlay"></div>
 		</div>
 	</section>
 
-</Layout>
+	<section id="servicios" class="services-section">
+		<div class="mb-14 text-center">
+			<div class="section-eyebrow">Nuestros Servicios</div>
+			<h2 class="section-title">Todo lo que su vehículo necesita</h2>
+		</div>
+
+		<ServicesGrid />
+	</section>
+
+	<section id="contacto" class="services-section bg-[#F7F8FA]">
+		<FindUs />
+	</section>
+
+</Layout> 
