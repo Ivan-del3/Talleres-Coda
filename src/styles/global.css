@@ -60,5 +60,48 @@
 	.footer-nav-link {
 		@apply text-sm font-normal no-underline text-[#FEFEFE] opacity-80 hover:opacity-100 hover:text-[#66bbfe] transition-all duration-300 ease-in-out;
 	}
+
+	.hero-title {
+		@apply text-[32px] sm:text-[42px] lg:text-[58px] font-semibold uppercase leading-[1.2] tracking-[0.02em] text-[#FEFEFE] font-heading;
+	}
+
+	.hero-badge {
+		@apply flex w-fit items-center gap-2.5 rounded-full border border-[#66bbfe]/35 bg-[#66bbfe]/[0.14] px-4.5 py-2 mb-4;
+	}
+
+	.hero-badge-text {
+		@apply text-xs font-semibold uppercase tracking-[0.12em] text-[#FEFEFE];
+	}
+
+	.hero-image-overlay {
+		@apply absolute inset-0 bg-linear-to-r from-[#22233A] via-[#22233A]/15 to-[#22233A]/0;
+	}
+
+	.btn-outline {
+		@apply rounded font-heading border border-[#FEFEFE]/40 px-4 py-2 text-sm font-semibold uppercase tracking-[0.06em] text-[#FEFEFE]
+				no-underline transition-colors duration-200 hover:border-[#66bbfe] hover:bg-[#66bbfe]/10;
+	}
+
+	.services-section {
+		@apply bg-[#FEFEFE] px-6 py-16 sm:px-10 md:px-16 lg:px-20 lg:py-20;
+	}
+
+	.section-eyebrow {
+		@apply mb-3 text-base font-semibold uppercase tracking-[0.18em] text-[#801A0B];
+	}
+
+	.section-title {
+		@apply text-[30px] sm:text-[36px] lg:text-[42px] font-semibold uppercase tracking-[0.02em] text-[#22233A] font-heading;
+	}
+
+	.service-card {
+		@apply rounded-xl border border-[#395B7A]/14 border-t-4 border-t-[#801A0B] bg-[#FEFEFE] p-5
+				shadow-[0_10px_30px_rgba(34,35,58,0.2)] transition-all duration-400 ease-in-out
+				hover:-translate-y-1.5 hover:scale-[1.04] hover:shadow-[0_20px_40px_rgba(77,121,190,0.25)];
+	}
+
+	.service-card-title {
+		@apply mt-4 mb-2 text-[18px] font-semibold uppercase tracking-[0.02em] text-[#22233A] font-heading;
+	}
 }
 
