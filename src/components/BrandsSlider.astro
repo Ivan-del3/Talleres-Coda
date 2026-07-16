@@ -1,0 +1,85 @@
+---
+const brands = [
+	"audi", "bmw", "citroen", "ferrari", "fiat", "ford", "honda", "hyundai",
+	"jeep", "kia", "lamborghini", "land-rover", "mazda", "mercedes", "mitsubishi",
+	"nissan", "opel", "peugeot", "porsche", "renault", "seat", "skoda", "volvo", "wolfwagen",
+];
+---
+
+<div class="relative mx-auto max-w-360 overflow-hidden">
+	<div class="brands-fade left-0 bg-linear-to-r from-[#FEFEFE] to-[#FEFEFE]/0"></div>
+	<div class="brands-fade right-0 bg-linear-to-l from-[#FEFEFE] to-[#FEFEFE]/0"></div>
+
+	<div id="brands-scroller" class="brands-scroller select-none">
+		<div id="brands-track" class="brands-track">
+			{[...brands, ...brands].map((brand) => (
+				<img
+					src={`/logos-car/${brand}.png`}
+					alt={brand}
+					draggable="false"
+					loading="lazy"
+					decoding="async"
+					class="h-16 w-auto shrink-0 object-contain sm:h-20"
+				/>
+			))}
+		</div>
+	</div>
+</div>
+
+<script>
+	const scroller = document.getElementById("brands-scroller") as HTMLDivElement;
+	const track = document.getElementById("brands-track") as HTMLDivElement;
+
+	let isDragging = false;
+	let dragStartX = 0;
+	let dragStartPos = 0;
+	let pos = 0; 
+	const speed = 1; 
+
+	let isVisible = false;
+	let rafId: number | null = null;
+
+	function wrap(value: number, halfWidth: number) {
+		if (value >= halfWidth) return value - halfWidth;
+		if (value < 0) return value + halfWidth;
+		return value;
+	}
+
+	function step() {
+		if (!isDragging) {
+			const halfWidth = track.scrollWidth / 2;
+			pos = wrap(pos + speed, halfWidth);
+			scroller.scrollLeft = pos;
+		}
+		rafId = requestAnimationFrame(step);
+	}
+
+	const observer = new IntersectionObserver(([entry]) => {
+		isVisible = entry.isIntersecting;
+		if (isVisible && rafId === null) {
+			rafId = requestAnimationFrame(step);
+		} else if (!isVisible && rafId !== null) {
+			cancelAnimationFrame(rafId);
+			rafId = null;
+		}
+	});
+	observer.observe(scroller);
+
+	scroller.addEventListener("mousedown", (e) => {
+		isDragging = true;
+		dragStartX = e.pageX;
+		dragStartPos = pos;
+	});
+
+	window.addEventListener("mousemove", (e) => {
+		if (!isDragging) return;
+		const halfWidth = track.scrollWidth / 2;
+		const delta = e.pageX - dragStartX;
+		pos = wrap(dragStartPos - delta, halfWidth);
+		scroller.scrollLeft = pos;
+	});
+
+	window.addEventListener("mouseup", () => {
+		isDragging = false;
+	});
+</script>
