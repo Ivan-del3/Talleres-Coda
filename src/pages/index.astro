@@ -2,11 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import ServicesGrid from '../components/ServicesGrid.astro';
 import FindUs from '../components/FindUs.astro';
+import BrandsSlider from '../components/BrandsSlider.astro';
 ---
 
 <Layout>
 
-	<section id="inicio" class="grid items-stretch bg-[#22233A] lg:grid-cols-[42fr_58fr]">
+	<section id="inicio" class="grid items-stretch bg-[#22233A] lg:grid-cols-[42fr_58fr] mb-6">
 		<div class="flex flex-col justify-center gap-6 px-6 py-18 md:px-14 lg:px-20">
 			<h1 class="hero-title">
 				Talleres C.O.D.A<br />
@@ -46,10 +47,18 @@ import FindUs from '../components/FindUs.astro';
 		</div>
 
 		<ServicesGrid />
+
+		<div class="mt-24 mb-14 text-center">
+			<div class="section-eyebrow">Taller Multimarca</div>
+			<p class="section-title text-lg">
+				Ofrecemos nuestros servicios para todo tipo de marcas, sea cual sea el modelo de su vehículo.
+			</p>
+		</div>
+		<BrandsSlider />
 	</section>
 
-	<section id="contacto" class="services-section bg-[#F7F8FA]">
+	<section id="contacto" class="services-section">
 		<FindUs />
 	</section>
 
-</Layout> 
+</Layout>

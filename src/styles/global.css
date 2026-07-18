@@ -83,7 +83,7 @@
 	}
 
 	.services-section {
-		@apply bg-[#FEFEFE] px-6 py-16 sm:px-10 md:px-16 lg:px-20 lg:py-20;
+		@apply bg-[#FEFEFE] px-6 py-16 sm:px-10 md:px-16 lg:px-20 lg:py-20 mb-6;
 	}
 
 	.section-eyebrow {
@@ -102,6 +102,23 @@
 
 	.service-card-title {
 		@apply mt-4 mb-2 text-[18px] font-semibold uppercase tracking-[0.02em] text-[#22233A] font-heading;
+	}
+
+	.brands-track {
+		@apply flex w-max items-center gap-16;
+	}
+
+	.brands-fade {
+		@apply pointer-events-none absolute inset-y-0 z-10 w-16 sm:w-28;
+	}
+
+	.brands-scroller {
+		@apply cursor-grab overflow-x-auto active:cursor-grabbing;
+		scrollbar-width: none;
+	}
+
+	.brands-scroller::-webkit-scrollbar {
+		display: none;
 	}
 }
 
