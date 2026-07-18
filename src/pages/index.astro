@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import ServicesGrid from '../components/ServicesGrid.astro';
 import FindUs from '../components/FindUs.astro';
 import BrandsSlider from '../components/BrandsSlider.astro';
+import Reviews from '../components/Reviews.astro';
+import Contact from '../components/Contact.astro';
 ---
 
 <Layout>
@@ -40,7 +42,7 @@ import BrandsSlider from '../components/BrandsSlider.astro';
 		</div>
 	</section>
 
-	<section id="servicios" class="services-section">
+	<section id="servicios" class="section-style">
 		<div class="mb-14 text-center">
 			<div class="section-eyebrow">Nuestros Servicios</div>
 			<h2 class="section-title">Todo lo que su vehículo necesita</h2>
@@ -50,15 +52,20 @@ import BrandsSlider from '../components/BrandsSlider.astro';
 
 		<div class="mt-24 mb-14 text-center">
 			<div class="section-eyebrow">Taller Multimarca</div>
-			<p class="section-title text-lg">
+			<p class="section-title text-sm sm:text-base lg:text-lg">
 				Ofrecemos nuestros servicios para todo tipo de marcas, sea cual sea el modelo de su vehículo.
 			</p>
 		</div>
 		<BrandsSlider />
 	</section>
 
-	<section id="contacto" class="services-section">
+	<section id="encuentranos" class="section-style bg-linear-to-b from-[#FEFEFE] to-[#66bbfe]/25">
 		<FindUs />
+		<Reviews />
+	</section>
+
+	<section id="contacto" class="section-style bg-[#22233A]">
+		<Contact />
 	</section>
 
 </Layout>
