@@ -1,0 +1,54 @@
+---
+interface Review {
+	quote: string;
+	name: string;
+	since: string;
+}
+
+const reviews: Review[] = [
+	{
+		quote: "De total confianza. Seriedad, calidad y rapidez. Muy satisfecha con la reparación de mi coche. Excelentes profesionales.",
+		name: "Pilar T.",
+		since: "Cliente desde 2019",
+	},
+	{
+		quote: "Desde 2012 llevando mi coche a este taller. Me inspira confianza y hasta ahora nada que reprochar. Totalmente recomendable.",
+		name: "George Muntianu",
+		since: "Cliente desde 2012",
+	},
+	{
+		quote: "Taller que merece mucho la pena. Precio bueno para lo que tenía que hacerse y el trato espectacular.  El coche lo dejan de 10.",
+		name: "Richard Condor Olortegui",
+		since: "Cliente desde 2018",
+	},
+];
+---
+
+<div class="mx-auto mt-24 max-w-360">
+	<div class="mb-14 text-center">
+		<h2 class="section-title text-lg md:text-2xl">Lo que dicen nuestros clientes</h2>
+		<div class="mt-3 flex items-center justify-center gap-2">
+			<span class="review-average-stars">
+				★★★★<span class="relative inline-block">
+					<span class="text-[#D9D9D9]">★</span>
+					<span class="absolute inset-0 w-1/2 overflow-hidden">★</span>
+				</span>
+			</span>
+			<span class="font-sans font-bold text-[#22233A]">4,4</span>
+			<span class="font-sans text-sm text-[#395B7A]">de media</span>
+		</div>
+	</div>
+
+	<div class="grid justify-items-center gap-x-4 gap-y-8 sm:grid-cols-1 lg:grid-cols-3 max-w-290 mx-auto">
+		{reviews.map((review) => (
+			<div class="review-card">
+			
+				<div class="font-sans font-bold text-[15px] text-[#22233A] mb-0.5">{review.name}</div>
+				<div class="font-sans text-sm text-[#395B7A] mb-4.5">{review.since}</div>
+				<div class="review-stars">★★★★★</div>
+				<p class="text-base leading-relaxed text-[#2B2B2B] italic">"{review.quote}"</p>
+				
+			</div>
+		))}
+	</div>
+</div>
