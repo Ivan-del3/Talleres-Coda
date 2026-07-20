@@ -3,20 +3,19 @@ import '../styles/global.css';
 ---
 
 <!doctype html>
-<html lang="es" class="h-full">
+<html lang="es" class="min-h-full">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" href="/favicon-coda.png" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Talleres-Coda-Valencia</title>
+		<title>Talleres CODA Valencia</title>
 	</head>
-	<body class="flex flex-col h-full font-sans">
+	<body class="flex min-h-full flex-col font-sans">
 
 		<header class="site-header">
 			<a href="/" class="shrink-0">
-				<img src="/logo-coda2.png" alt="Talleres Coda" class="h-28 w-auto object-contain" />
+				<img src="/logo-coda.png" alt="Talleres Coda" class="h-28 w-auto object-contain" />
 			</a>
 
 			<nav>
@@ -42,7 +41,7 @@ import '../styles/global.css';
 		</main>
 
 		<footer class="flex flex-col items-center gap-4 px-32 py-8 bg-[#395B7A] border-t-4 border-[#801A0B]">
-			<img src="/logo-coda2.png" alt="Talleres Coda" class="h-12 w-auto" />
+			<img src="/logo-coda.png" alt="Talleres Coda" class="h-12 w-auto" />
 
 			<nav>
 				<ul class="flex gap-6 list-none m-0 p-0">
@@ -55,6 +54,27 @@ import '../styles/global.css';
 
 			<p class="text-sm text-[#FEFEFE]/60 m-0">© 2026 Talleres Coda. Todos los derechos reservados.</p>
 		</footer>
+
+		<script>
+			const header = document.querySelector<HTMLElement>('.site-header');
+			let lastY = window.scrollY;
+			let ticking = false;
+
+			window.addEventListener('scroll', () => {
+				if (ticking) return;
+				ticking = true;
+				requestAnimationFrame(() => {
+					const currentY = window.scrollY;
+					if (currentY > lastY && currentY > 100) {
+						header?.classList.add('header-hidden');
+					} else if (currentY < lastY) {
+						header?.classList.remove('header-hidden');
+					}
+					lastY = currentY;
+					ticking = false;
+				});
+			}, { passive: true });
+		</script>
 	</body>
 </html>
 

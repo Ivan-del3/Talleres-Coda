@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 96px;
+}
+
 @font-face {
 	font-family: "Barlow";
 	font-style: normal;
@@ -32,6 +37,11 @@
 @layer components {
 	.site-header {
 		@apply sticky top-0 z-50 flex items-center justify-between px-14 py-2 bg-[#FEFEFE];
+		transition: transform 0.4s ease-out;
+	}
+
+	.site-header.header-hidden {
+		transform: translateY(-100%);
 	}
 
 	.site-header::after {
@@ -46,8 +56,25 @@
 	}
 
 	.header-nav-link {
-		@apply inline-block font-semibold text-[17px] tracking-[0.08em] text-[#395B7A]
+		@apply relative inline-block font-semibold text-[17px] tracking-[0.08em] text-[#395B7A]
 				no-underline transition-all duration-200 hover:text-[#801A0B] hover:scale-[1.04];
+	}
+
+	.header-nav-link::after {
+		content: '';
+		position: absolute;
+		left: 20%;
+		bottom: -4px;
+		width: 60%;
+		height: 2px;
+		background-color: #801A0B;
+		transform: scaleX(0);
+		transform-origin: center;
+		transition: transform 0.4s ease;
+	}
+
+	.header-nav-link:hover::after {
+		transform: scaleX(1);
 	}
 
 	.btn-primary {
@@ -66,7 +93,7 @@
 	}
 
 	.hero-badge {
-		@apply flex w-fit items-center gap-2.5 rounded-full border border-[#66bbfe]/35 bg-[#66bbfe]/[0.14] px-4.5 py-2 mb-4;
+		@apply flex w-fit items-center gap-2.5 rounded-full border border-[#66bbfe]/35 bg-[#66bbfe]/[0.14] px-4.5 py-2;
 	}
 
 	.hero-badge-text {
