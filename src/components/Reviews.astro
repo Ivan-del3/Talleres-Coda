@@ -5,6 +5,8 @@ interface Review {
 	since: string;
 }
 
+const googleReviewsHref = "https://www.google.es/maps/place/Talleres+CODA+Valencia/@39.4789988,-0.3976954,17z/data=!3m1!4b1!4m18!1m9!3m8!1s0xd604f6713b93c33:0x51cc74cd7cdc86ab!2sTalleres+CODA+Valencia!8m2!3d39.4789988!4d-0.3951205!9m1!1b1!16s%2Fg%2F1z44bhtlw!3m7!1s0xd604f6713b93c33:0x51cc74cd7cdc86ab!8m2!3d39.4789988!4d-0.3951205!9m1!1b1!16s%2Fg%2F1z44bhtlw";
+
 const reviews: Review[] = [
 	{
 		quote: "De total confianza. Seriedad, calidad y rapidez. Muy satisfecha con la reparación de mi coche. Excelentes profesionales.",
@@ -39,7 +41,7 @@ const reviews: Review[] = [
 		</div>
 	</div>
 
-	<div class="grid justify-items-center gap-x-4 gap-y-8 sm:grid-cols-1 lg:grid-cols-3 max-w-290 mx-auto">
+	<div class="grid justify-items-center gap-x-4 gap-y-8 sm:grid-cols-1 lg:grid-cols-3 max-w-290 mx-auto mb-6">
 		{reviews.map((review) => (
 			<div class="review-card">
 			
@@ -50,5 +52,10 @@ const reviews: Review[] = [
 				
 			</div>
 		))}
+	</div>
+	<div class="mb-14 flex justify-center">
+		<a href={googleReviewsHref} target="_blank" rel="noopener noreferrer" class="btn-outline text-[#22233A] border-[#22233A]/40 hover:border-[#801A0B] hover:bg-[#801A0B]/10">
+			Ver reseñas en Google
+		</a>
 	</div>
 </div>
