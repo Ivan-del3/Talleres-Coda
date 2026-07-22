@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/Footer.astro';
 ---
 
 <!doctype html>
@@ -40,20 +41,7 @@ import '../styles/global.css';
 			<slot />
 		</main>
 
-		<footer class="flex flex-col items-center gap-4 px-32 py-8 bg-[#395B7A] border-t-4 border-[#801A0B]">
-			<img src="/logo-coda.png" alt="Talleres Coda" class="h-12 w-auto" />
-
-			<nav>
-				<ul class="flex gap-6 list-none m-0 p-0">
-					<li><a href="/conocenos" class="footer-nav-link">Conócenos</a></li>
-					<li><a href="/servicios" class="footer-nav-link">Nuestros servicios</a></li>
-					<li><a href="/encuentranos" class="footer-nav-link">Encuéntranos</a></li>
-					<li><a href="/contacto" class="footer-nav-link">Contacto</a></li>
-				</ul>
-			</nav>
-
-			<p class="text-sm text-[#FEFEFE]/60 m-0">© 2026 Talleres Coda. Todos los derechos reservados.</p>
-		</footer>
+		<Footer />
 
 		<script>
 			const header = document.querySelector<HTMLElement>('.site-header');
