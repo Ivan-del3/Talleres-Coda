@@ -63,13 +63,38 @@ import Contact from '../components/Contact.astro';
 		<BrandsSlider />
 	</section>
 
+	<div class="section-divider mx-auto flex max-w-250 items-center gap-15 py-10">
+		<span class="divider-line bg-[#801A0B]/90"></span>
+		<span class="divider-line bg-[#801A0B]/90"></span>
+	</div>
+
 	<section id="encuentranos" class="section-style bg-linear-to-b from-[#FEFEFE] to-[#66bbfe]/25">
 		<FindUs />
 		<Reviews />
 	</section>
 
-	<section id="contacto" class="section-style bg-[#22233A]">
+	<section id="contacto" class="section-style pb-60 relative z-0 overflow-hidden bg-[#22233A]">
+		<div class="pointer-events-none absolute -top-32 -left-32 -z-10 h-105 w-105 rounded-full bg-[#4d79be]/10"></div>
+		<div class="pointer-events-none absolute -right-20 bottom-1 -z-10 h-105 w-105 rounded-full bg-[#4d79be]/10"></div>
 		<Contact />
 	</section>
 
 </Layout>
+
+<script>
+	const dividers = document.querySelectorAll<HTMLElement>(".section-divider");
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			for (const entry of entries) {
+				if (entry.isIntersecting) {
+					entry.target.classList.add("in-view");
+					observer.unobserve(entry.target);
+				}
+			}
+		},
+		{ threshold: 0.07 }
+	);
+
+	dividers.forEach((divider) => observer.observe(divider));
+</script>
