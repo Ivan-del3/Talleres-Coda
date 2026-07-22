@@ -2,7 +2,7 @@
 
 html {
 	scroll-behavior: smooth;
-	scroll-padding-top: 96px;
+	scroll-padding-top: 90px;
 }
 
 @font-face {
@@ -70,7 +70,7 @@ html {
 		background-color: #801A0B;
 		transform: scaleX(0);
 		transform-origin: center;
-		transition: transform 0.4s ease;
+		transition: transform 0.6s ease;
 	}
 
 	.header-nav-link:hover::after {
@@ -159,5 +159,88 @@ html {
 	.review-average-stars {
 		@apply text-2xl tracking-[2px] text-[#801A0B];
 	}
+
+	.contact-info-card {
+		@apply flex items-start gap-4 rounded-xl border border-[#66bbfe]/18 border-t-4 border-t-[#801A0B]
+				bg-[#FEFEFE]/5 p-5 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-[#FEFEFE]/8;
+	}
+
+	.contact-info-icon {
+		@apply flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#66bbfe]/14;
+	}
+
+	.divider-line {
+		@apply h-px flex-1 origin-center scale-x-0;
+		transition: scale 0.85s ease;
+	}
+
+	.section-divider.in-view .divider-line {
+		@apply scale-x-100;
+	}
 }
 
+.footer {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    background: #22233A;
+}
+
+.footer-waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 390px;
+
+    display: block;
+}
+
+.footer-content {
+    position: absolute;
+    z-index: 2;
+
+    bottom: 10px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+
+    text-align: center;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+
+    margin-bottom: 28px;
+    transform: translateY(-40px);
+}
+
+.socials a {
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.footer nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    margin-bottom: 22px;
+}
+
+.footer nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.footer nav span {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 16px;
+}
