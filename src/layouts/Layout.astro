@@ -16,11 +16,11 @@ import Footer from '../components/Footer.astro';
 
 		<header class="site-header">
 			<a href="/" class="shrink-0">
-				<img src="/logo-coda.png" alt="Talleres Coda" class="h-28 w-auto object-contain" />
+				<img src="/logo-coda.png" alt="Talleres Coda" class="h-20 w-auto object-contain lg:h-22 xl:h-28" />
 			</a>
 
-			<nav>
-				<ul class="flex items-center gap-12 list-none">
+			<nav class="hidden lg:block">
+				<ul class="flex items-center gap-6 xl:gap-10 list-none">
 					<li><a href="/#inicio" class="header-nav-link">Conócenos</a></li>
 					<li><a href="/#servicios" class="header-nav-link">Nuestros Servicios</a></li>
 					<li><a href="/#encuentranos" class="header-nav-link">Encuéntranos</a></li>
@@ -28,12 +28,36 @@ import Footer from '../components/Footer.astro';
 				</ul>
 			</nav>
 
-			<div class="flex items-center gap-8">
-				<a href="tel:963474751" class="flex items-center gap-2 no-underline text-[#22233A]  hover:scale-[1.04] transition-transform duration-200 ">
-					<img src="/icons/phone.svg" alt="" class="h-5 w-5" />
-					<span class="font-semibold whitespace-nowrap">963 47 47 51</span>
+			<div class="flex items-center gap-3 sm:gap-6 xl:gap-8">
+				<a href="tel:963474751" class="hidden items-center gap-2 no-underline text-[#22233A] hover:scale-[1.04] transition-transform duration-200 sm:flex">
+					<img src="/icons/phone.svg" alt="" class="h-3.5 w-3.5 xl:h-5 xl:w-5" />
+					<span class="font-semibold whitespace-nowrap text-base xl:text-lg">963 47 47 51</span>
 				</a>
-				<a href="/#contacto" class="btn-primary">Reservar Cita</a>
+				<a href="/#contacto" class="btn-primary hidden sm:inline-block">Reservar Cita</a>
+
+				<button id="menu-toggle" type="button" class="menu-toggle md:ml-6 lg:hidden" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+					<span class="menu-bar"></span>
+					<span class="menu-bar"></span>
+					<span class="menu-bar"></span>
+				</button>
+			</div>
+
+			<div id="mobile-menu" class="mobile-menu lg:hidden">
+				<ul class="flex flex-col items-center list-none py-4">
+					<li class="w-full py-3 text-center"><a href="/#inicio" class="mobile-nav-link">Conócenos</a></li>
+					<li class="menu-separator w-full py-3 text-center"><a href="/#servicios" class="mobile-nav-link">Nuestros Servicios</a></li>
+					<li class="menu-separator w-full py-3 text-center"><a href="/#encuentranos" class="mobile-nav-link">Encuéntranos</a></li>
+					<li class="menu-separator w-full py-3 text-center"><a href="/#contacto" class="mobile-nav-link">Contacto</a></li>
+					<li class="menu-separator sm:hidden w-full py-3 flex justify-center">
+						<a href="tel:963474751" class="flex items-center gap-2 no-underline text-[#22233A]">
+							<img src="/icons/phone.svg" alt="" class="h-3 w-3" />
+							<span class="font-semibold whitespace-nowrap text-sm">963 47 47 51</span>
+						</a>
+					</li>
+					<li class="menu-separator sm:hidden w-full pt-3 flex justify-center">
+						<a href="/#contacto" class="btn-primary text-xs inline-block hover:scale-100 hover:shadow-[0_4px_14px_rgba(128,26,11,0.30)]">Reservar Cita</a>
+					</li>
+				</ul>
 			</div>
 		</header>
 
@@ -44,6 +68,36 @@ import Footer from '../components/Footer.astro';
 		<Footer />
 
 		<script>
+			const menuToggle = document.querySelector<HTMLButtonElement>('#menu-toggle');
+			const mobileMenu = document.querySelector<HTMLElement>('#mobile-menu');
+
+			const closeMenu = () => {
+				menuToggle?.setAttribute('aria-expanded', 'false');
+				mobileMenu?.classList.remove('open');
+			};
+
+			menuToggle?.addEventListener('click', () => {
+				const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+				menuToggle.setAttribute('aria-expanded', String(!isOpen));
+				mobileMenu?.classList.toggle('open', !isOpen);
+			});
+
+			mobileMenu?.querySelectorAll('a').forEach((link) => {
+				link.addEventListener('click', closeMenu);
+			});
+
+			document.addEventListener('click', (event) => {
+				const isOpen = menuToggle?.getAttribute('aria-expanded') === 'true';
+				if (!isOpen) return;
+				const target = event.target as Node;
+				if (mobileMenu?.contains(target) || menuToggle?.contains(target)) return;
+				closeMenu();
+			});
+
+			window.addEventListener('resize', () => {
+				if (window.innerWidth >= 1024) closeMenu();
+			});
+
 			const header = document.querySelector<HTMLElement>('.site-header');
 			let lastY = window.scrollY;
 			let ticking = false;
@@ -55,6 +109,7 @@ import Footer from '../components/Footer.astro';
 					const currentY = window.scrollY;
 					if (currentY > lastY && currentY > 100) {
 						header?.classList.add('header-hidden');
+						closeMenu();
 					} else if (currentY < lastY) {
 						header?.classList.remove('header-hidden');
 					}

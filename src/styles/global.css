@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
+
 html {
 	scroll-behavior: smooth;
 	scroll-padding-top: 90px;
 }
+
+/* ------- Fuentes ------- */
 
 @font-face {
 	font-family: "Barlow";
@@ -35,8 +38,11 @@ html {
 }
 
 @layer components {
+
+	/* -------- Header / navegación -------- */
+
 	.site-header {
-		@apply sticky top-0 z-50 flex items-center justify-between px-14 py-2 bg-[#FEFEFE];
+		@apply sticky top-0 z-50 flex items-center justify-between px-13 py-2 bg-[#FEFEFE];
 		transition: transform 0.4s ease-out;
 	}
 
@@ -56,7 +62,7 @@ html {
 	}
 
 	.header-nav-link {
-		@apply relative inline-block font-semibold text-[17px] tracking-[0.08em] text-[#395B7A]
+		@apply relative inline-block font-semibold text-[13px] md:text-[14px] lg:text-[15px] xl:text-[17px] tracking-[0.08em] text-[#395B7A]
 				no-underline transition-all duration-200 hover:text-[#801A0B] hover:scale-[1.04];
 	}
 
@@ -77,16 +83,67 @@ html {
 		transform: scaleX(1);
 	}
 
+	/* Menú hamburguesa */
+
+	.mobile-nav-link {
+		@apply inline-block font-semibold text-[13px] md:text-[14px] lg:text-[15px] xl:text-[17px] tracking-[0.08em] text-[#395B7A]
+				no-underline;
+	}
+
+	.menu-toggle {
+		@apply flex h-10 w-10 flex-col items-center justify-center gap-1.5 cursor-pointer;
+	}
+
+	.menu-bar {
+		@apply block h-0.5 w-6 rounded-full bg-[#22233A] transition-all duration-300 ease-in-out;
+	}
+
+	.menu-toggle[aria-expanded="true"] .menu-bar:nth-child(1) {
+		transform: translateY(8px) rotate(45deg);
+	}
+
+	.menu-toggle[aria-expanded="true"] .menu-bar:nth-child(2) {
+		opacity: 0;
+	}
+
+	.menu-toggle[aria-expanded="true"] .menu-bar:nth-child(3) {
+		transform: translateY(-8px) rotate(-45deg);
+	}
+
+	.mobile-menu {
+		@apply absolute left-0 right-0 top-full flex flex-col overflow-hidden bg-[#FEFEFE] shadow-[0_14px_30px_rgba(34,35,58,0.18)];
+		max-height: 0;
+		transition: max-height 0.35s ease;
+	}
+
+	.mobile-menu.open {
+		max-height: 500px;
+	}
+
+	.menu-separator {
+		@apply relative;
+	}
+
+	.menu-separator::before {
+		content: '';
+		@apply absolute top-0 left-1/2 w-[50%] h-px -translate-x-1/2 bg-[#801A0B]/45;
+	}
+
+	/* ------- Botones --------- */
+
 	.btn-primary {
 		@apply font-heading bg-[#801A0B] text-[#FEFEFE] no-underline
-				px-4 py-2 rounded font-semibold text-sm tracking-[0.06em] uppercase
+				px-3 py-1.5 xl:px-4 xl:py-2 rounded font-semibold text-sm tracking-[0.06em] uppercase
 				whitespace-nowrap shadow-[0_4px_14px_rgba(128,26,11,0.30)]
 				transition-all duration-200 ease-in-out hover:scale-[1.04] hover:shadow-[0_6px_20px_rgba(128,26,11,0.42)];
 	}
 
-	.footer-nav-link {
-		@apply text-sm font-normal no-underline text-[#FEFEFE] opacity-80 hover:opacity-100 hover:text-[#66bbfe] transition-all duration-300 ease-in-out;
+	.btn-outline {
+		@apply rounded font-heading border border-[#FEFEFE]/40 px-4 py-2 text-sm font-semibold uppercase tracking-[0.06em] text-[#FEFEFE]
+				no-underline transition-colors duration-200 hover:border-[#66bbfe] hover:bg-[#66bbfe]/10;
 	}
+
+	/* ----------- Hero ---------- */
 
 	.hero-title {
 		@apply text-[32px] sm:text-[42px] lg:text-[58px] font-semibold uppercase leading-[1.2] tracking-[0.02em] text-[#FEFEFE] font-heading;
@@ -104,10 +161,7 @@ html {
 		@apply absolute inset-0 bg-linear-to-r from-[#22233A] via-[#22233A]/15 to-[#22233A]/0;
 	}
 
-	.btn-outline {
-		@apply rounded font-heading border border-[#FEFEFE]/40 px-4 py-2 text-sm font-semibold uppercase tracking-[0.06em] text-[#FEFEFE]
-				no-underline transition-colors duration-200 hover:border-[#66bbfe] hover:bg-[#66bbfe]/10;
-	}
+	/* --------- Secciones (estilos compartidos) ------------ */
 
 	.section-style {
 		@apply bg-[#FEFEFE] px-6 py-16 sm:px-10 md:px-16 lg:px-20 lg:py-20;
@@ -121,6 +175,17 @@ html {
 		@apply text-[30px] sm:text-[36px] lg:text-[42px] font-semibold uppercase tracking-[0.02em] text-[#22233A] font-heading;
 	}
 
+	.divider-line {
+		@apply h-px flex-1 origin-center scale-x-0;
+		transition: scale 0.85s ease;
+	}
+
+	.section-divider.in-view .divider-line {
+		@apply scale-x-100;
+	}
+
+	/* ------- Servicios ----------- */
+
 	.service-card {
 		@apply rounded-xl border border-[#395B7A]/14 border-t-4 border-t-[#801A0B] bg-[#FEFEFE] p-5
 				shadow-[0_10px_30px_rgba(34,35,58,0.2)] transition-all duration-400 ease-in-out
@@ -130,6 +195,8 @@ html {
 	.service-card-title {
 		@apply mt-4 mb-2 text-[18px] font-semibold uppercase tracking-[0.02em] text-[#22233A] font-heading;
 	}
+
+	/* ----------- Slider de marcas ---------------- */
 
 	.brands-track {
 		@apply flex w-max items-center gap-16;
@@ -148,8 +215,10 @@ html {
 		display: none;
 	}
 
+	/* --------- Reseñas ----------------- */
+
 	.review-card {
-		@apply w-120 lg:w-90 rounded-xl bg-[#FEFEFE] p-5 shadow-[0_10px_30px_rgba(34,35,58,0.2)];
+		@apply w-full max-w-120 lg:max-w-none rounded-xl bg-[#FEFEFE] p-5 shadow-[0_10px_30px_rgba(34,35,58,0.2)];
 	}
 
 	.review-stars {
@@ -160,6 +229,8 @@ html {
 		@apply text-2xl tracking-[2px] text-[#801A0B];
 	}
 
+	/* ---------- Contacto -------------- */
+
 	.contact-info-card {
 		@apply flex items-start gap-4 rounded-xl border border-[#66bbfe]/18 border-t-4 border-t-[#801A0B]
 				bg-[#FEFEFE]/5 p-5 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-[#FEFEFE]/8;
@@ -169,78 +240,37 @@ html {
 		@apply flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#66bbfe]/14;
 	}
 
-	.divider-line {
-		@apply h-px flex-1 origin-center scale-x-0;
-		transition: scale 0.85s ease;
+	/* ------- Footer ------- */
+
+	.footer {
+		@apply relative h-80 overflow-hidden bg-[#22233A];
 	}
 
-	.section-divider.in-view .divider-line {
-		@apply scale-x-100;
+	.footer-waves {
+		@apply absolute bottom-0 left-0 block w-full h-97.5;
 	}
-}
 
-.footer {
-    position: relative;
-    height: 320px;
-    overflow: hidden;
-    background: #22233A;
-}
+	.footer-content {
+		@apply absolute z-2 bottom-2.5 left-1/2 w-full -translate-x-1/2 text-center;
+	}
 
-.footer-waves {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+	.socials {
+		@apply flex justify-center gap-6 mb-7 -translate-y-10;
+	}
 
-    width: 100%;
-    height: 390px;
+	.socials a {
+		@apply text-white no-underline text-[22px];
+	}
 
-    display: block;
-}
+	.footer nav {
+		@apply flex justify-center gap-5 mb-5.5;
+	}
 
-.footer-content {
-    position: absolute;
-    z-index: 2;
+	.footer nav a {
+		@apply text-white no-underline text-base;
+	}
 
-    bottom: 10px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 100%;
-
-    text-align: center;
-}
-
-.socials {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-
-    margin-bottom: 28px;
-    transform: translateY(-40px);
-}
-
-.socials a {
-    color: white;
-    text-decoration: none;
-    font-size: 22px;
-}
-
-.footer nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-
-    margin-bottom: 22px;
-}
-
-.footer nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.footer nav span {
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 16px;
+	.footer nav span {
+		@apply text-white/40 text-base;
+	}
 }
