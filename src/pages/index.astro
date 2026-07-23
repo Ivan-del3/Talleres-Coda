@@ -10,13 +10,13 @@ import Contact from '../components/Contact.astro';
 <Layout>
 
 	<section id="inicio" class="grid items-stretch bg-[#22233A] lg:grid-cols-[42fr_58fr] mb-6">
-		<div class="flex flex-col justify-center gap-6 px-6 py-18 md:px-14 lg:px-20">
+		<div class="flex flex-col justify-center gap-6 px-10 md:px-14 lg:px-20 pt-18 pb-4 lg:py-18">
 			<h1 class="hero-title">
 				Talleres C.O.D.A<br />
 				<span class="text-[#66bbfe]">Valencia</span>
 			</h1>
 
-			<p class="max-w-120 text-lg leading-relaxed text-[#FEFEFE]/82">
+			<p class="w-full lg:max-w-120 text-base lg:text-lg leading-relaxed text-[#FEFEFE]/82">
 				Más de dos décadas reparando y manteniendo vehículos en Valencia. Diagnóstico preciso, mecánicos certificados y trato honesto en cada visita.
 			</p>
 			<div class="hero-badge">
@@ -40,8 +40,8 @@ import Contact from '../components/Contact.astro';
 			</div>
 		</div>
 
-		<div class="relative hidden overflow-hidden lg:block">
-			<img src="/fachada-intro.png" alt="Fachada de Talleres C.O.D.A." class="h-full w-full object-cover object-center" />
+		<div class="relative overflow-hidden">
+			<img src="/fachada-intro.png" alt="Fachada de Talleres C.O.D.A." class="h-64 w-full object-cover object-center sm:h-80 lg:h-full" />
 			<div class="hero-image-overlay"></div>
 		</div>
 	</section>

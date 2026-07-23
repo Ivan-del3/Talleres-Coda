@@ -150,7 +150,9 @@ html {
 	}
 
 	.hero-badge {
-		@apply flex w-fit items-center gap-2.5 rounded-full border border-[#66bbfe]/35 bg-[#66bbfe]/[0.14] px-4.5 py-2;
+		@apply flex w-fit items-center gap-2.5
+				min-[385px]:rounded-full min-[385px]:border min-[385px]:border-[#66bbfe]/35
+				min-[385px]:bg-[#66bbfe]/[0.14] min-[385px]:px-4.5 min-[385px]:py-2;
 	}
 
 	.hero-badge-text {
@@ -158,7 +160,7 @@ html {
 	}
 
 	.hero-image-overlay {
-		@apply absolute inset-0 bg-linear-to-r from-[#22233A] via-[#22233A]/15 to-[#22233A]/0;
+		@apply absolute inset-0 bg-linear-to-b from-[#22233A] via-[#22233A]/15 to-[#22233A]/0 lg:bg-linear-to-r;
 	}
 
 	/* --------- Secciones (estilos compartidos) ------------ */
