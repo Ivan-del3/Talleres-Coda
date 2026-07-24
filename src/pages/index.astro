@@ -10,13 +10,13 @@ import Contact from '../components/Contact.astro';
 <Layout>
 
 	<section id="inicio" class="grid items-stretch bg-[#22233A] lg:grid-cols-[42fr_58fr] mb-6">
-		<div class="flex flex-col justify-center gap-6 px-6 py-18 md:px-14 lg:px-20">
+		<div class="flex flex-col justify-center gap-6 px-7 sm:px-16 lg:px-20 pt-18 pb-4 lg:py-18">
 			<h1 class="hero-title">
 				Talleres C.O.D.A<br />
 				<span class="text-[#66bbfe]">Valencia</span>
 			</h1>
 
-			<p class="max-w-120 text-lg leading-relaxed text-[#FEFEFE]/82">
+			<p class="w-full lg:max-w-120 text-base lg:text-lg leading-relaxed text-[#FEFEFE]/82">
 				Más de dos décadas reparando y manteniendo vehículos en Valencia. Diagnóstico preciso, mecánicos certificados y trato honesto en cada visita.
 			</p>
 			<div class="hero-badge">
@@ -25,10 +25,10 @@ import Contact from '../components/Contact.astro';
 					Valencia · Marqués de San Juan, 8
 				</span>
 			</div>
-			<a href="tel:963474751" class="flex items-center gap-2 no-underline  text-[#FEFEFE]/82 mb-4">
+			<div class="flex items-center gap-2 no-underline  text-[#FEFEFE]/82 mb-4">
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
 				<span class="font-semibold whitespace-nowrap">963 47 47 51</span>
-			</a>
+			</div>
 
 			<div class="flex flex-wrap gap-6">
 				<a href="/#contacto" class="btn-primary text-sm shadow-[0_8px_24px_rgba(128,26,11,0.35)]">
@@ -40,16 +40,16 @@ import Contact from '../components/Contact.astro';
 			</div>
 		</div>
 
-		<div class="relative hidden overflow-hidden lg:block">
-			<img src="/fachada-intro.png" alt="Fachada de Talleres C.O.D.A." class="h-full w-full object-cover object-center" />
+		<div class="relative overflow-hidden">
+			<img src="/fachada-intro.png" alt="Fachada de Talleres C.O.D.A." class="h-64 w-full object-cover object-center sm:h-80 lg:h-full" />
 			<div class="hero-image-overlay"></div>
 		</div>
 	</section>
 
 	<section id="servicios" class="section-style">
 		<div class="mb-14 text-center">
-			<div class="section-eyebrow">Nuestros Servicios</div>
-			<h2 class="section-title">Todo lo que su vehículo necesita</h2>
+			<div class="section-eyebrow text-sm sm:text-base">Nuestros Servicios</div>
+			<h2 class="section-title text-2xl sm:text-[36px] lg:text-[42px]">Todo lo que su vehículo necesita</h2>
 		</div>
 
 		<ServicesGrid />
@@ -63,7 +63,7 @@ import Contact from '../components/Contact.astro';
 		<BrandsSlider />
 	</section>
 
-	<div class="section-divider mx-auto flex max-w-250 items-center gap-15 py-10">
+	<div class="section-divider mx-auto flex max-w-250 items-center gap-6 px-6 py-6 sm:gap-10 sm:px-10 sm:py-8 lg:gap-15 lg:px-0 lg:py-10">
 		<span class="divider-line bg-[#801A0B]/90"></span>
 		<span class="divider-line bg-[#801A0B]/90"></span>
 	</div>
@@ -74,8 +74,8 @@ import Contact from '../components/Contact.astro';
 	</section>
 
 	<section id="contacto" class="section-style pb-60 relative z-0 overflow-hidden bg-[#22233A]">
-		<div class="pointer-events-none absolute -top-32 -left-32 -z-10 h-105 w-105 rounded-full bg-[#4d79be]/10"></div>
-		<div class="pointer-events-none absolute -right-20 bottom-1 -z-10 h-105 w-105 rounded-full bg-[#4d79be]/10"></div>
+		<div class="pointer-events-none absolute -top-20 -left-20 sm:-top-28 sm:-left-28 md:-top-32 md:-left-32 -z-10 h-64 w-64 sm:h-80 sm:w-80 md:h-105 md:w-105 rounded-full bg-[#4d79be]/10"></div>
+		<div class="pointer-events-none absolute -right-12 bottom-15 md:bottom-1 sm:-right-16 md:-right-20 -z-10 h-64 w-64 sm:h-80 sm:w-80 md:h-105 md:w-105 rounded-full bg-[#4d79be]/10"></div>
 		<Contact />
 	</section>
 

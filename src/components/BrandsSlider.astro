@@ -19,7 +19,7 @@ const brands = [
 					draggable="false"
 					loading="lazy"
 					decoding="async"
-					class="h-16 w-auto shrink-0 object-contain sm:h-20"
+					class="h-16 max-[449px]:h-11 w-auto shrink-0 object-contain sm:h-20"
 				/>
 			))}
 		</div>
@@ -80,6 +80,24 @@ const brands = [
 	});
 
 	window.addEventListener("mouseup", () => {
+		isDragging = false;
+	});
+
+	scroller.addEventListener("touchstart", (e) => {
+		isDragging = true;
+		dragStartX = e.touches[0].pageX;
+		dragStartPos = pos;
+	}, { passive: true });
+
+	window.addEventListener("touchmove", (e) => {
+		if (!isDragging) return;
+		const halfWidth = track.scrollWidth / 2;
+		const delta = e.touches[0].pageX - dragStartX;
+		pos = wrap(dragStartPos - delta, halfWidth);
+		scroller.scrollLeft = pos;
+	}, { passive: true });
+
+	window.addEventListener("touchend", () => {
 		isDragging = false;
 	});
 </script>
