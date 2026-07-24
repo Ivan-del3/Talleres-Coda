@@ -42,7 +42,7 @@ html {
 	/* -------- Header / navegación -------- */
 
 	.site-header {
-		@apply sticky top-0 z-50 flex items-center justify-between px-13 py-2 bg-[#FEFEFE];
+		@apply sticky top-0 z-50 flex items-center justify-between pl-2 pr-8 sm:px-10 lg:px-13 bg-[#FEFEFE];
 		transition: transform 0.4s ease-out;
 	}
 
@@ -146,7 +146,7 @@ html {
 	/* ----------- Hero ---------- */
 
 	.hero-title {
-		@apply text-[32px] sm:text-[42px] lg:text-[58px] font-semibold uppercase leading-[1.2] tracking-[0.02em] text-[#FEFEFE] font-heading;
+		@apply text-[35px] sm:text-[45px] lg:text-[58px] font-semibold uppercase leading-[1.2] tracking-[0.02em] text-[#FEFEFE] font-heading;
 	}
 
 	.hero-badge {
@@ -189,19 +189,19 @@ html {
 	/* ------- Servicios ----------- */
 
 	.service-card {
-		@apply flex flex-col rounded-xl border border-[#395B7A]/14 border-t-4 border-t-[#801A0B] bg-[#FEFEFE] p-4 sm:p-5
+		@apply flex flex-col rounded-xl border border-[#395B7A]/14 border-t-4 border-t-[#801A0B] bg-[#FEFEFE] p-2.5 sm:p-5
 				shadow-[0_10px_30px_rgba(34,35,58,0.2)] transition-all duration-400 ease-in-out
 				hover:-translate-y-1.5 hover:scale-[1.04] hover:shadow-[0_20px_40px_rgba(77,121,190,0.25)];
 	}
 
 	.service-card-btn {
-		@apply mt-4 inline-flex items-center gap-1 self-start bg-transparent border-none p-0 cursor-pointer
-				font-heading text-xs font-semibold uppercase tracking-[0.06em] text-[#395B7A]
+		@apply mt-2 sm:mt-4 inline-flex items-center gap-1 self-start bg-transparent border-none p-0 cursor-pointer
+				font-heading text-[10px] sm:text-xs font-semibold uppercase tracking-[0.06em] text-[#395B7A]
 				transition-colors duration-200 hover:text-[#801A0B];
 	}
 
 	.service-card-btn svg {
-		@apply transition-transform duration-200;
+		@apply w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200;
 	}
 
 	.service-card-btn:hover svg {
@@ -209,17 +209,17 @@ html {
 	}
 
 	.service-card-title {
-		@apply mt-3 mb-1.5 sm:mt-4 sm:mb-2 text-[16px] sm:text-[18px] font-semibold uppercase tracking-[0.02em] text-[#22233A] font-heading;
+		@apply mt-2 mb-1 sm:mt-4 sm:mb-2 text-[12px] leading-tight sm:text-[18px] sm:leading-normal font-semibold uppercase tracking-[0.02em] text-[#22233A] font-heading;
 	}
 
 	/* ----------- Slider de marcas ---------------- */
 
 	.brands-track {
-		@apply flex w-max items-center gap-8 sm:gap-12 lg:gap-16;
+		@apply flex w-max items-center gap-8 max-[449px]:gap-5 sm:gap-12 lg:gap-16;
 	}
 
 	.brands-fade {
-		@apply pointer-events-none absolute inset-y-0 z-10 w-8 sm:w-16 lg:w-28;
+		@apply pointer-events-none absolute inset-y-0 z-10 w-8 max-[449px]:w-6 sm:w-16 lg:w-28;
 	}
 
 	.brands-scroller {
@@ -234,26 +234,26 @@ html {
 	/* --------- Reseñas ----------------- */
 
 	.review-card {
-		@apply w-full max-w-120 lg:max-w-none rounded-xl bg-[#FEFEFE] p-5 shadow-[0_10px_30px_rgba(34,35,58,0.2)];
+		@apply w-full max-w-120 lg:max-w-none rounded-xl bg-[#FEFEFE] p-3.5 sm:p-5 shadow-[0_10px_30px_rgba(34,35,58,0.2)];
 	}
 
 	.review-stars {
-		@apply text-xl tracking-[2px] text-[#801A0B];
+		@apply text-base sm:text-xl tracking-[2px] text-[#801A0B];
 	}
 
 	.review-average-stars {
-		@apply text-2xl tracking-[2px] text-[#801A0B];
+		@apply text-xl sm:text-2xl tracking-[2px] text-[#801A0B];
 	}
 
 	/* ---------- Contacto -------------- */
 
 	.contact-info-card {
-		@apply flex items-start gap-4 rounded-xl border border-[#66bbfe]/18 border-t-4 border-t-[#801A0B]
-				bg-[#FEFEFE]/5 p-5 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-[#FEFEFE]/8;
+		@apply flex items-start gap-3 sm:gap-4 rounded-xl border border-[#66bbfe]/18 border-t-4 border-t-[#801A0B]
+				bg-[#FEFEFE]/5 p-3.5 sm:p-5 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-[#FEFEFE]/8;
 	}
 
 	.contact-info-icon {
-		@apply flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#66bbfe]/14;
+		@apply flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-lg bg-[#66bbfe]/14;
 	}
 
 	/* ------- Footer ------- */
