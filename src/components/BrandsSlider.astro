@@ -82,4 +82,22 @@ const brands = [
 	window.addEventListener("mouseup", () => {
 		isDragging = false;
 	});
+
+	scroller.addEventListener("touchstart", (e) => {
+		isDragging = true;
+		dragStartX = e.touches[0].pageX;
+		dragStartPos = pos;
+	}, { passive: true });
+
+	window.addEventListener("touchmove", (e) => {
+		if (!isDragging) return;
+		const halfWidth = track.scrollWidth / 2;
+		const delta = e.touches[0].pageX - dragStartX;
+		pos = wrap(dragStartPos - delta, halfWidth);
+		scroller.scrollLeft = pos;
+	}, { passive: true });
+
+	window.addEventListener("touchend", () => {
+		isDragging = false;
+	});
 </script>
