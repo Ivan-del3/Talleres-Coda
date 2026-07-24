@@ -145,6 +145,22 @@ html {
 
 	/* ----------- Hero ---------- */
 
+	.hero-section {
+		@apply grid items-stretch bg-[#22233A] lg:grid-cols-[42fr_58fr] mb-6;
+	}
+
+	.hero-content {
+		@apply flex flex-col justify-center gap-6 px-7 sm:px-16 lg:px-20 pt-18 pb-4 lg:py-18;
+	}
+
+	.hero-phone {
+		@apply flex items-center gap-2 no-underline text-[#FEFEFE]/82 mb-4;
+	}
+
+	.hero-image {
+		@apply h-64 w-full object-cover object-center sm:h-80 lg:h-full;
+	}
+
 	.hero-title {
 		@apply text-[35px] sm:text-[45px] lg:text-[58px] font-semibold uppercase leading-[1.2] tracking-[0.02em] text-[#FEFEFE] font-heading;
 	}
@@ -175,6 +191,26 @@ html {
 
 	.section-title {
 		@apply text-[30px] sm:text-[36px] lg:text-[42px] font-semibold uppercase tracking-[0.02em] text-[#22233A] font-heading;
+	}
+
+	.divider-bar {
+		@apply mx-auto flex max-w-250 items-center gap-6 px-6 py-6 sm:gap-10 sm:px-10 sm:py-8 lg:gap-15 lg:px-0 lg:py-10;
+	}
+
+	.contact-section {
+		@apply pb-35 sm:pb-45 md:pb-52 lg:pb-60 relative z-0 overflow-hidden bg-[#22233A];
+	}
+
+	.contact-blob {
+		@apply pointer-events-none absolute -z-10 h-64 w-64 sm:h-80 sm:w-80 md:h-105 md:w-105 rounded-full bg-[#4d79be]/10;
+	}
+
+	.contact-blob-tl {
+		@apply -top-20 -left-20 sm:-top-28 sm:-left-28 md:-top-32 md:-left-32;
+	}
+
+	.contact-blob-br {
+		@apply -right-12 bottom-5 sm:-right-16 md:-right-20;
 	}
 
 	.divider-line {
