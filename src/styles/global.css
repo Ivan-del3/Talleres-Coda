@@ -259,34 +259,38 @@ html {
 	/* ------- Footer ------- */
 
 	.footer {
-		@apply relative h-80 overflow-hidden bg-[#22233A];
+		@apply relative h-32 sm:h-42 lg:h-50 overflow-hidden bg-[#22233A];
 	}
 
 	.footer-waves {
-		@apply absolute bottom-0 left-0 block w-full h-97.5;
+		@apply absolute bottom-0 left-0 block w-full h-40 sm:h-52 lg:h-62;
 	}
 
 	.footer-content {
-		@apply absolute z-2 bottom-2.5 left-1/2 w-full -translate-x-1/2 text-center;
+		@apply absolute z-2 bottom-1.5 sm:bottom-2 lg:bottom-2.5 left-1/2 w-full -translate-x-1/2 text-center px-4;
 	}
 
 	.socials {
-		@apply flex justify-center gap-6 mb-7 -translate-y-10;
+		@apply flex flex-wrap justify-center gap-4 sm:gap-5 lg:gap-6 mb-3 sm:mb-6 lg:mb-7;
 	}
 
 	.socials a {
 		@apply text-white no-underline text-[22px];
 	}
 
+	.socials svg {
+		@apply w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8;
+	}
+
 	.footer nav {
-		@apply flex justify-center gap-5 mb-5.5;
+		@apply flex flex-wrap justify-center gap-1 lg:gap-2 mb-3 sm:mb-4 lg:mb-5.5;
 	}
 
 	.footer nav a {
-		@apply text-white no-underline text-base;
+		@apply text-white no-underline text-xs sm:text-sm lg:text-base;
 	}
 
 	.footer nav span {
-		@apply text-white/40 text-base;
+		@apply text-white/40 text-xs sm:text-sm lg:text-base;
 	}
 }
