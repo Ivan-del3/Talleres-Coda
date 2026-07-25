@@ -329,4 +329,43 @@ html {
 	.footer nav span {
 		@apply text-white/40 text-xs sm:text-sm lg:text-base;
 	}
+
+	/* ------- Aviso de cookies ------- */
+
+	.cookie-banner {
+		@apply fixed inset-x-3 bottom-3 z-50 flex flex-col gap-3 rounded-xl border-t-4 border-t-[#801A0B] bg-[#FEFEFE] p-4
+				shadow-[0_10px_30px_rgba(34,35,58,0.35)]
+				sm:inset-x-auto sm:bottom-6 sm:left-6 sm:max-w-md sm:flex-row sm:items-center sm:gap-4 sm:p-5;
+	}
+
+	.cookie-text {
+		@apply text-xs leading-relaxed text-[#2B2B2B] sm:text-sm;
+	}
+
+	.cookie-link {
+		@apply text-[#801A0B] underline underline-offset-2 hover:text-[#4d79be];
+	}
+
+	.cookie-actions {
+		@apply flex shrink-0 items-center justify-end gap-3;
+	}
+
+	.cookie-btn-reject {
+		@apply rounded font-heading border border-[#395B7A]/30 px-4 py-2 text-sm font-semibold uppercase tracking-[0.06em] text-[#395B7A]
+				no-underline transition-colors duration-200 hover:border-[#801A0B] hover:text-[#801A0B];
+	}
+
+	/* ------- Mapa (Encuéntranos) ------- */
+
+	.map-frame {
+		@apply h-full w-full;
+	}
+
+	.map-placeholder {
+		@apply flex h-full min-h-64 flex-col items-center justify-center gap-4 bg-[#395B7A]/8 px-6 text-center sm:min-h-80 lg:min-h-96;
+	}
+
+	.map-placeholder p {
+		@apply max-w-80 text-sm text-[#2B2B2B]/75;
+	}
 }

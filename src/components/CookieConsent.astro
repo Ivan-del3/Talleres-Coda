@@ -1,0 +1,44 @@
+---
+---
+<div id="cookie-consent" class="cookie-banner hidden" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+	<p class="cookie-text">
+		Esta página incluye un mapa de Google Maps. Al aceptar, se cargará contenido de Google que puede utilizar cookies y tecnologías similares. Si rechazas, el mapa no se mostrará. 
+		Más información en nuestra <a href="/politica-cookies" class="cookie-link">política de cookies</a>.
+	</p>
+	<div class="cookie-actions">
+		<button id="cookie-reject" type="button" class="cookie-btn-reject">Rechazar</button>
+		<button id="cookie-accept" type="button" class="btn-primary">Aceptar</button>
+	</div>
+</div>
+
+<script is:inline>
+	(function () {
+		const banner = document.getElementById('cookie-consent');
+		const hasDecision = document.cookie.match(/(?:^|; )coda-maps-consent=([^;]*)/);
+		if (hasDecision) {
+			banner?.remove();
+		} else {
+			banner?.classList.remove('hidden');
+		}
+	})();
+</script>
+
+<script>
+	import { setCookie } from '../scripts/cookies';
+
+	const COOKIE_NAME = 'coda-maps-consent';
+	const CONSENT_EVENT = 'coda-maps-consent';
+
+	const banner = document.querySelector<HTMLElement>('#cookie-consent');
+	const acceptBtn = document.querySelector<HTMLButtonElement>('#cookie-accept');
+	const rejectBtn = document.querySelector<HTMLButtonElement>('#cookie-reject');
+
+	const setConsent = (value: 'accepted' | 'rejected') => {
+		setCookie(COOKIE_NAME, value, 180);
+		document.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: value }));
+		banner?.remove();
+	};
+
+	acceptBtn?.addEventListener('click', () => setConsent('accepted'));
+	rejectBtn?.addEventListener('click', () => setConsent('rejected'));
+</script>

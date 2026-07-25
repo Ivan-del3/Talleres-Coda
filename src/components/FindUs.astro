@@ -35,15 +35,54 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
 	</div>
 
 	<div class="min-h-64 sm:min-h-80 lg:min-h-96 overflow-hidden rounded-xl border border-[#395B7A]/14 shadow-[0_10px_30px_rgba(34,35,58,0.2)]">
-		<iframe
-			src={mapEmbedSrc}
-			width="100%"
-			height="100%"
-			style="border:0; min-height: 260px;"
-			allowfullscreen
-			loading="lazy"
-			referrerpolicy="no-referrer-when-downgrade"
-			title="Ubicación de Talleres C.O.D.A en el mapa"
-		></iframe>
+		<div id="map-frame" class="map-frame" data-map-src={mapEmbedSrc} aria-live="polite">
+			<div id="map-placeholder" class="map-placeholder">
+				<p>El mapa de Google Maps no se ha cargado porque no has aceptado las cookies de contenido de terceros.</p>
+			</div>
+		</div>
 	</div>
 </div>
+
+<script is:inline>
+	(function () {
+		const frame = document.getElementById('map-frame');
+		const match = document.cookie.match(/(?:^|; )coda-maps-consent=([^;]*)/);
+		if (!frame || !match || decodeURIComponent(match[1]) !== 'accepted') return;
+
+		const src = frame.getAttribute('data-map-src');
+		if (!src) return;
+
+		const iframe = document.createElement('iframe');
+		iframe.src = src;
+		iframe.width = '100%';
+		iframe.height = '100%';
+		iframe.style.border = '0';
+		iframe.style.minHeight = '260px';
+		iframe.loading = 'lazy';
+		iframe.referrerPolicy = 'no-referrer-when-downgrade';
+		iframe.title = 'Ubicación de Talleres C.O.D.A en el mapa';
+		iframe.allowFullscreen = true;
+
+		frame.replaceChildren(iframe);
+	})();
+</script>
+
+<script>
+	import { loadMapsIframe } from '../scripts/maps';
+
+	const CONSENT_EVENT = 'coda-maps-consent';
+
+	const frame = document.querySelector<HTMLDivElement>('#map-frame');
+
+	const loadMap = () => {
+		if (!frame || frame.querySelector('iframe')) return;
+		const src = frame.dataset.mapSrc;
+		if (!src) return;
+
+		loadMapsIframe(frame, src);
+	};
+
+	document.addEventListener(CONSENT_EVENT, (event) => {
+		if ((event as CustomEvent<string>).detail === 'accepted') loadMap();
+	});
+</script>
