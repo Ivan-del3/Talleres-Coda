@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 ---
 
 <!doctype html>
@@ -66,6 +67,8 @@ import Footer from '../components/Footer.astro';
 		</main>
 
 		<Footer />
+
+		<CookieConsent />
 
 		<script>
 			const menuToggle = document.querySelector<HTMLButtonElement>('#menu-toggle');
