@@ -48,21 +48,21 @@
 			<div class="section-eyebrow mb-1.5 sm:mb-2 text-xs sm:text-base">Formulario de contacto</div>
 			<h3 class="font-heading mb-3 sm:mb-5.5 text-base sm:text-xl font-semibold uppercase tracking-[0.02em] text-[#22233A]">Solicite su cita</h3>
 
-			<form class="flex flex-col gap-3 sm:gap-4">
+			<form id="contact-form" class="flex flex-col gap-3 sm:gap-4">
 				<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
 					<label class="font-sans font-semibold flex flex-col gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#395B7A]">
 						Su nombre:
-						<input type="text" name="nombre" placeholder="Nombre y apellidos" class="font-sans rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40" />
+						<input type="text" name="nombre" required placeholder="Nombre y apellidos" class="font-sans rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40" />
 					</label>
 					<label class="font-sans font-semibold flex flex-col gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#395B7A]">
 						Teléfono:
-						<input type="tel" name="telefono" placeholder="600 000 000" class="font-sans rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40" />
+						<input type="tel" name="telefono" required placeholder="600 000 000" class="font-sans rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40" />
 					</label>
 				</div>
 
 				<label class="font-sans font-semibold flex flex-col gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#395B7A]">
 					Correo electrónico:
-					<input type="email" name="email" placeholder="usted@email.com" class="font-sans rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40" />
+					<input type="email" name="email" required placeholder="usted@email.com" class="font-sans rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40" />
 				</label>
 
 				<label class="font-sans font-semibold flex flex-col gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#395B7A]">
@@ -86,12 +86,60 @@
 
 				<label class="font-sans font-semibold flex flex-col gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#395B7A]">
 					Mensaje:
-					<textarea rows="3" name="mensaje" placeholder="Cuéntenos qué le ocurre a su vehículo..." class="font-sans resize-y rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40"></textarea>
+					<textarea rows="3" name="mensaje" required placeholder="Cuéntenos qué le ocurre a su vehículo..." class="font-sans resize-y rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40"></textarea>
 				</label>
 
+				<div class="cf-turnstile self-center" data-sitekey="0x4AAAAAAD_RfeK9oYp6YeoD"></div>
+
 				<button type="submit" class="btn-primary w-full sm:w-[40%] self-center cursor-pointer border-none text-sm sm:text-sm">Enviar Solicitud</button>
-				<p class="text-center text-[10px] sm:text-xs text-[#395B7A]/75">Al enviar acepta que le contactemos para gestionar su solicitud.</p>
+				<p id="contact-form-status" class="text-center text-[10px] sm:text-xs text-[#395B7A]/75" role="status">
+					Al enviar acepta que le contactemos para gestionar su solicitud.
+				</p>
 			</form>
 		</div>
 	</div>
 </div>
+
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+	const form = document.querySelector<HTMLFormElement>('#contact-form');
+	const status = document.querySelector<HTMLParagraphElement>('#contact-form-status');
+
+	form?.addEventListener('submit', async (event) => {
+		event.preventDefault();
+
+		const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+		submitButton?.setAttribute('disabled', 'true');
+		if (status) {
+			status.textContent = 'Enviando...';
+			status.classList.remove('text-[#801A0B]', 'text-green-700');
+		}
+
+		try {
+			const response = await fetch('/api/send.php', {
+				method: 'POST',
+				body: new FormData(form),
+			});
+			const data = await response.json();
+
+			if (status) {
+				status.textContent = data.message;
+				status.classList.toggle('text-green-700', data.ok);
+				status.classList.toggle('text-[#801A0B]', !data.ok);
+			}
+
+			if (data.ok) {
+				form.reset();
+				(window as any).turnstile?.reset();
+			}
+		} catch {
+			if (status) {
+				status.textContent = 'No se ha podido enviar la solicitud. Inténtelo de nuevo más tarde.';
+				status.classList.add('text-[#801A0B]');
+			}
+		} finally {
+			submitButton?.removeAttribute('disabled');
+		}
+	});
+</script>
