@@ -17,6 +17,12 @@ pnpm-debug.log*
 .env
 .env.production
 
+# credenciales SMTP reales (usar config.example.php como plantilla)
+public/api/config.php
+
+# datos del rate limit, se genera solo en tiempo de ejecución
+public/api/.ratelimit.php
+
 # macOS-specific files
 .DS_Store
 
