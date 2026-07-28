@@ -131,7 +131,6 @@
 
 			if (data.ok) {
 				form.reset();
-				(window as any).turnstile?.reset();
 			}
 		} catch {
 			if (status) {
@@ -139,6 +138,7 @@
 				status.classList.add('text-[#801A0B]');
 			}
 		} finally {
+			(window as any).turnstile?.reset();
 			submitButton?.removeAttribute('disabled');
 		}
 	});

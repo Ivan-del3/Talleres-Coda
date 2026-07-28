@@ -30,24 +30,50 @@ function getClientIp(): string
 
 function verifyTurnstile(string $token, string $secretKey, string $remoteIp): bool
 {
-    $options = [
-        'http' => [
-            'method' => 'POST',
-            'header' => 'Content-Type: application/x-www-form-urlencoded',
-            'content' => http_build_query([
-                'secret' => $secretKey,
-                'response' => $token,
-                'remoteip' => $remoteIp,
-            ]),
-            'timeout' => 5,
-        ],
+    $postFields = [
+        'secret' => $secretKey,
+        'response' => $token,
+        'remoteip' => $remoteIp,
     ];
 
-    $result = @file_get_contents(
-        'https://challenges.cloudflare.com/turnstile/v0/siteverify',
-        false,
-        stream_context_create($options)
-    );
+    if (function_exists('curl_init')) {
+        $ch = curl_init('https://challenges.cloudflare.com/turnstile/v0/siteverify');
+        curl_setopt_array($ch, [
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => http_build_query($postFields),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CONNECTTIMEOUT => 5,
+            CURLOPT_TIMEOUT => 10,
+        ]);
+
+        $result = curl_exec($ch);
+
+        if ($result === false) {
+            error_log('Turnstile: fallo en la petición a Cloudflare (cURL) — ' . curl_error($ch));
+        }
+
+        curl_close($ch);
+    } else {
+        $options = [
+            'http' => [
+                'method' => 'POST',
+                'header' => 'Content-Type: application/x-www-form-urlencoded',
+                'content' => http_build_query($postFields),
+                'timeout' => 10,
+            ],
+        ];
+
+        $result = @file_get_contents(
+            'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+            false,
+            stream_context_create($options)
+        );
+
+        if ($result === false) {
+            $error = error_get_last();
+            error_log('Turnstile: fallo en la petición a Cloudflare (file_get_contents) — ' . ($error['message'] ?? 'motivo desconocido'));
+        }
+    }
 
     if ($result === false) {
         return false;
@@ -55,7 +81,12 @@ function verifyTurnstile(string $token, string $secretKey, string $remoteIp): bo
 
     $response = json_decode($result, true);
 
-    return $response['success'] ?? false;
+    if (!($response['success'] ?? false)) {
+        error_log('Turnstile: verificación rechazada — ' . json_encode($response['error-codes'] ?? []));
+        return false;
+    }
+
+    return true;
 }
 
 function isRateLimited(string $ip): bool
