@@ -1,7 +1,12 @@
 ---
+import { Image, getImage } from 'astro:assets';
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import logo from '../assets/logo-coda.png';
+import faviconSrc from '../assets/favicon-coda.png';
+
+const favicon = await getImage({ src: faviconSrc, width: 64, format: 'png' });
 ---
 
 <!doctype html>
@@ -9,7 +14,7 @@ import CookieConsent from '../components/CookieConsent.astro';
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/favicon-coda.png" />
+		<link rel="icon" type="image/png" href={favicon.src} />
 		<meta name="generator" content={Astro.generator} />
 		<title>Talleres CODA Valencia</title>
 	</head>
@@ -17,7 +22,7 @@ import CookieConsent from '../components/CookieConsent.astro';
 
 		<header class="site-header">
 			<a href="/" class="shrink-0">
-				<img src="/logo-coda.png" alt="Talleres Coda" class="h-20 w-auto object-contain md:h-22 xl:h-28" />
+				<Image src={logo} alt="Talleres Coda" width={1150} quality={100} class="h-20 w-auto object-contain md:h-22 xl:h-28" />
 			</a>
 
 			<nav class="hidden lg:block">
