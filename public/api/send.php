@@ -182,6 +182,7 @@ try {
         $mail->Username = $smtpConfig['smtp_username'];
         $mail->Password = $smtpConfig['smtp_password'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Timeout = 10;
     } else {
         $mail->isMail();
     }
