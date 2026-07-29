@@ -248,6 +248,47 @@ html {
 		@apply mt-2 mb-1 sm:mt-4 sm:mb-2 text-[12px] leading-tight sm:text-[18px] sm:leading-normal font-semibold uppercase tracking-[0.02em] text-[#22233A] font-heading;
 	}
 
+	/* ------- Modal de servicios ----------- */
+
+	.service-modal-overlay {
+		@apply fixed inset-0 z-50 flex items-center justify-center bg-[#22233A]/60 p-3 sm:p-4;
+	}
+
+	.service-modal {
+		@apply relative w-full max-w-2xl max-h-[92vh] sm:max-h-[88vh] overflow-y-auto overflow-x-hidden rounded-xl bg-[#FEFEFE]
+				shadow-[0_20px_50px_rgba(34,35,58,0.35)];
+	}
+
+	.service-modal-close {
+		@apply absolute top-3 right-3 z-10 flex h-8 w-8 items-center justify-center rounded-full
+				bg-[#22233A]/60 text-[#FEFEFE] hover:bg-[#22233A]/85
+				sm:top-4 sm:right-4 sm:h-9 sm:w-9;
+	}
+
+	.service-modal-image {
+		@apply max-h-[34vh] w-full cursor-zoom-in bg-[#395B7A]/12 object-contain sm:max-h-[50vh];
+	}
+
+	.image-lightbox {
+		@apply fixed inset-0 z-60 flex cursor-zoom-out items-center justify-center bg-[#22233A]/90 p-4 sm:p-6;
+	}
+
+	.image-lightbox img {
+		@apply max-h-full max-w-full object-contain;
+	}
+
+	.service-modal-body {
+		@apply border-t-4 border-t-[#801A0B] p-5 sm:p-8 lg:p-10;
+	}
+
+	.service-modal-title {
+		@apply mb-3 font-heading text-xl sm:text-2xl lg:text-3xl font-semibold uppercase tracking-[0.02em] text-[#22233A];
+	}
+
+	.service-modal-desc {
+		@apply grid gap-3 text-base sm:text-lg leading-relaxed text-[#2B2B2B];
+	}
+
 	/* ----------- Slider de marcas ---------------- */
 
 	.brands-track {

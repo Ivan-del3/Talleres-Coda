@@ -1,10 +1,12 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import ServicesGrid from '../components/ServicesGrid.astro';
 import FindUs from '../components/FindUs.astro';
 import BrandsSlider from '../components/BrandsSlider.astro';
 import Reviews from '../components/Reviews.astro';
 import Contact from '../components/Contact.astro';
+import fachada from '../assets/fachada-intro.png';
 ---
 
 <Layout>
@@ -41,7 +43,7 @@ import Contact from '../components/Contact.astro';
 		</div>
 
 		<div class="relative overflow-hidden">
-			<img src="/fachada-intro.png" alt="Fachada de Talleres C.O.D.A." class="hero-image" />
+			<Image src={fachada} alt="Fachada de Talleres C.O.D.A." width={2400} format="webp" quality={100} loading="eager" fetchpriority="high" class="hero-image" />
 			<div class="hero-image-overlay"></div>
 		</div>
 	</section>
