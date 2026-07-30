@@ -255,7 +255,7 @@ html {
 	}
 
 	.service-modal {
-		@apply relative w-full max-w-2xl max-h-[92vh] sm:max-h-[88vh] overflow-y-auto overflow-x-hidden rounded-xl bg-[#FEFEFE]
+		@apply relative w-full max-w-2xl max-h-[80vh] sm:max-h-[88vh] overflow-y-auto overflow-x-hidden rounded-xl bg-[#FEFEFE]
 				shadow-[0_20px_50px_rgba(34,35,58,0.35)];
 	}
 
@@ -266,7 +266,7 @@ html {
 	}
 
 	.service-modal-image {
-		@apply max-h-[34vh] w-full cursor-zoom-in bg-[#395B7A]/12 object-contain sm:max-h-[50vh];
+		@apply max-h-[26vh] w-full cursor-zoom-in bg-[#395B7A]/12 object-contain sm:max-h-[50vh];
 	}
 
 	.image-lightbox {
