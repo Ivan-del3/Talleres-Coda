@@ -145,13 +145,22 @@ $telefono = trim((string) ($_POST['telefono'] ?? ''));
 $email = trim((string) ($_POST['email'] ?? ''));
 $servicio = trim((string) ($_POST['servicio'] ?? ''));
 $mensaje = trim((string) ($_POST['mensaje'] ?? ''));
+$privacidad = (string) ($_POST['privacidad'] ?? '');
 
 if ($nombre === '' || $telefono === '' || $email === '' || $mensaje === '') {
     respond(false, 'Faltan campos obligatorios.');
 }
 
+if ($privacidad === '') {
+    respond(false, 'Debe aceptar la política de privacidad para enviar la solicitud.');
+}
+
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     respond(false, 'El correo electrónico no es válido.');
+}
+
+if (!preg_match('/^(\+34\s?)?[6789]\d{2}\s?\d{3}\s?\d{3}$/', $telefono)) {
+    respond(false, 'El teléfono no es válido.');
 }
 
 $maxLengths = [

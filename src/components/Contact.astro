@@ -52,17 +52,17 @@
 				<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
 					<label class="font-sans font-semibold flex flex-col gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#395B7A]">
 						Su nombre:
-						<input type="text" name="nombre" required placeholder="Nombre y apellidos" class="font-sans rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40" />
+						<input type="text" name="nombre" required maxlength="100" placeholder="Nombre y apellidos" class="font-sans rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40" />
 					</label>
 					<label class="font-sans font-semibold flex flex-col gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#395B7A]">
 						Teléfono:
-						<input type="tel" name="telefono" required placeholder="600 000 000" class="font-sans rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40" />
+						<input type="tel" name="telefono" required maxlength="16" pattern="(\+34\s?)?[6789]\d{2}\s?\d{3}\s?\d{3}" title="Introduzca un teléfono español válido (9 dígitos, empezando por 6, 7, 8 o 9)" placeholder="600 000 000" class="font-sans rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40" />
 					</label>
 				</div>
 
 				<label class="font-sans font-semibold flex flex-col gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#395B7A]">
 					Correo electrónico:
-					<input type="email" name="email" required placeholder="usted@email.com" class="font-sans rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40" />
+					<input type="email" name="email" required maxlength="150" placeholder="usted@email.com" class="font-sans rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40" />
 				</label>
 
 				<label class="font-sans font-semibold flex flex-col gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#395B7A]">
@@ -86,7 +86,14 @@
 
 				<label class="font-sans font-semibold flex flex-col gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#395B7A]">
 					Mensaje:
-					<textarea rows="3" name="mensaje" required placeholder="Cuéntenos qué le ocurre a su vehículo..." class="font-sans resize-y rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40"></textarea>
+					<textarea rows="3" name="mensaje" required maxlength="5000" placeholder="Cuéntenos qué le ocurre a su vehículo..." class="font-sans resize-y rounded-md border-[1.5px] border-[#395B7A]/25 bg-[#FEFEFE] px-3 py-2.5 sm:px-3.5 sm:py-3.5 text-sm sm:text-[15px] text-[#22233A] outline-none placeholder:text-[#22233A]/40"></textarea>
+				</label>
+
+				<label class="font-sans flex items-start gap-2 text-[11px] sm:text-xs text-[#395B7A] ml-0.5 mb-2">
+					<input type="checkbox" name="privacidad" required class="mt-0.5 h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 accent-[#801A0B]" />
+					<span>
+						He leído y acepto la <a href="/politica-privacidad" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-[#801A0B]">política de privacidad</a>.
+					</span>
 				</label>
 
 				<div class="cf-turnstile self-center" data-sitekey="0x4AAAAAAD_RfeK9oYp6YeoD"></div>
