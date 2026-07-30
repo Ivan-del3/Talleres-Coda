@@ -4,7 +4,7 @@ import { services } from "../data/services";
 
 const optimizedImages = await Promise.all(
 	services.map((service) =>
-		getImage({ src: service.image, width: 1200, format: "webp" })
+		getImage({ src: service.image, width: 1600, format: "webp", quality: 90 })
 	)
 );
 ---
@@ -56,7 +56,42 @@ const optimizedImages = await Promise.all(
 	const lightbox = document.getElementById("image-lightbox");
 	const lightboxImage = document.getElementById("image-lightbox-image") as HTMLImageElement | null;
 
-	document.querySelectorAll<HTMLButtonElement>(".service-card-btn").forEach((btn) => {
+	const preloadedImages = new Map<string, HTMLImageElement>();
+	function preloadImage(src: string) {
+		if (!src || preloadedImages.has(src)) return;
+		const img = new Image();
+		img.src = src;
+		preloadedImages.set(src, img);
+		img.decode?.().catch(() => {});
+	}
+
+	const serviceButtons = document.querySelectorAll<HTMLButtonElement>(".service-card-btn");
+
+	if ("IntersectionObserver" in window) {
+		const preloadObserver = new IntersectionObserver(
+			(entries, observer) => {
+				entries.forEach((entry) => {
+					if (!entry.isIntersecting) return;
+					const btn = entry.target as HTMLButtonElement;
+					preloadImage(btn.dataset.image ?? "");
+					observer.unobserve(btn);
+				});
+			},
+			{ rootMargin: "100px" }
+		);
+		serviceButtons.forEach((btn) => preloadObserver.observe(btn));
+	} else {
+		serviceButtons.forEach((btn) => preloadImage(btn.dataset.image ?? ""));
+	}
+
+	function lockBodyScroll() {
+		document.body.style.overflow = "hidden";
+	}
+	function unlockBodyScroll() {
+		document.body.style.overflow = "";
+	}
+
+	serviceButtons.forEach((btn) => {
 		btn.addEventListener("click", () => {
 			if (modalImage) {
 				modalImage.src = btn.dataset.image ?? "";
@@ -72,14 +107,19 @@ const optimizedImages = await Promise.all(
 				});
 			}
 			overlay?.classList.remove("hidden");
+			lockBodyScroll();
 		});
 	});
 
 	document.getElementById("service-modal-close")?.addEventListener("click", () => {
 		overlay?.classList.add("hidden");
+		unlockBodyScroll();
 	});
 	overlay?.addEventListener("click", (e) => {
-		if (e.target === overlay) overlay.classList.add("hidden");
+		if (e.target === overlay) {
+			overlay.classList.add("hidden");
+			unlockBodyScroll();
+		}
 	});
 
 	modalImage?.addEventListener("click", () => {
@@ -89,6 +129,7 @@ const optimizedImages = await Promise.all(
 			lightbox?.classList.remove("hidden");
 		}
 	});
+
 	lightbox?.addEventListener("click", () => {
 		lightbox?.classList.add("hidden");
 	});
@@ -99,6 +140,7 @@ const optimizedImages = await Promise.all(
 			lightbox.classList.add("hidden");
 		} else {
 			overlay?.classList.add("hidden");
+			unlockBodyScroll();
 		}
 	});
 </script>
