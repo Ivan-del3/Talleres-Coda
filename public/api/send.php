@@ -178,7 +178,7 @@ foreach ($maxLengths as $campo => $max) {
     }
 }
 
-$destinatario = 'nagatowork3@gmail.com';
+$destinatario = 'coda@tallerescoda.com';
 
 $mail = new PHPMailer(true);
 
